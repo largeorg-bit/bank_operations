@@ -8,6 +8,7 @@
 - `src/widget.py` — подготовка данных для виджета
 - `src/processing.py` — фильтрация и сортировка операций
 - `src/generators.py` — генераторы для работы с транзакциями
+- `src/decorators.py` — декораторы
 
 ## generators
 
@@ -37,6 +38,23 @@ from src.generators import card_number_generator
 for card_number in card_number_generator(1, 5):
     print(card_number)
 ```
+
+## decorators
+
+### log
+
+```python
+from src.decorators import log
+
+@log(filename="mylog.txt")
+def my_function(x, y):
+    return x + y
+
+my_function(1, 2)
+```
+
+При успехе в лог пишется `my_function ok`.
+При ошибке — имя функции, текст ошибки и входные параметры.
 
 ## Тестирование
 
