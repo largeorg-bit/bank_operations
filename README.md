@@ -8,40 +8,38 @@
 - `src/widget.py` — подготовка данных для виджета
 - `src/processing.py` — фильтрация и сортировка операций
 - `src/generators.py` — генераторы для работы с транзакциями
+- `src/decorators.py` — декораторы
+- `src/utils.py` — чтение JSON-файла с операциями
+- `src/external_api.py` — конвертация валют
 
-## generators
+## utils
 
-### filter_by_currency
-
-```python
-from src.generators import filter_by_currency
-
-usd_transactions = filter_by_currency(transactions, "USD")
-print(next(usd_transactions))
-```
-
-### transaction_descriptions
+### load_operations
 
 ```python
-from src.generators import transaction_descriptions
+from src.utils import load_operations
 
-descriptions = transaction_descriptions(transactions)
-print(next(descriptions))
+operations = load_operations("data/operations.json")
+print(len(operations))
 ```
 
-### card_number_generator
+## external_api
+
+### get_amount_transaction_in_rub
 
 ```python
-from src.generators import card_number_generator
+from src.external_api import get_amount_transaction_in_rub
 
-for card_number in card_number_generator(1, 5):
-    print(card_number)
+amount_rub = get_amount_transaction_in_rub(transaction)
+print(amount_rub)
 ```
+
+Для работы с API скопируйте `.env.example` в `.env` и укажите ключ `API_KEY`.
 
 ## Тестирование
 
 ```bash
-pip install pytest pytest-cov
+pip install pytest pytest-cov requests python-dotenv
 pytest
 ```
 
