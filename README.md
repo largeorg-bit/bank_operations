@@ -5,36 +5,21 @@
 ## Модули
 
 - `src/masks.py` — маскирование карт и счетов
-- `src/widget.py` — подготовка данных для виджета
+- `src/widget.py` — поготовка данных для виджета
 - `src/processing.py` — фильтрация и сортировка операций
 - `src/generators.py` — генераторы для работы с транзакциями
 - `src/decorators.py` — декораторы
 - `src/utils.py` — чтение JSON-файла с операциями
 - `src/external_api.py` — конвертация валют
 
-## utils
+## Логирование
 
-### load_operations
+Логи модулей `masks` и `utils` записываются в папку `logs/`:
 
-```python
-from src.utils import load_operations
+- `logs/masks.log`
+- `logs/utils.log`
 
-operations = load_operations("data/operations.json")
-print(len(operations))
-```
-
-## external_api
-
-### get_amount_transaction_in_rub
-
-```python
-from src.external_api import get_amount_transaction_in_rub
-
-amount_rub = get_amount_transaction_in_rub(transaction)
-print(amount_rub)
-```
-
-Для работы с API скопируйте `.env.example` в `.env` и укажите ключ `API_KEY`.
+Формат: время, модуль, уровень, сообщение. Файл перезаписывается при каждом запуске.
 
 ## Тестирование
 
