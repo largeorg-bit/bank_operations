@@ -8,40 +8,39 @@
 - `src/widget.py` — подготовка данных для виджета
 - `src/processing.py` — фильтрация и сортировка операций
 - `src/generators.py` — генераторы для работы с транзакциями
+- `src/decorators.py` — декораторы
+- `src/utils.py` — чтение JSON-файла с операциями
+- `src/external_api.py` — конвертация валют
+- `src/file_reader.py` — чтение CSV и Excel
 
-## generators
+## file_reader
 
-### filter_by_currency
-
-```python
-from src.generators import filter_by_currency
-
-usd_transactions = filter_by_currency(transactions, "USD")
-print(next(usd_transactions))
-```
-
-### transaction_descriptions
+### read_csv_transactions
 
 ```python
-from src.generators import transaction_descriptions
+from src.file_reader import read_csv_transactions
 
-descriptions = transaction_descriptions(transactions)
-print(next(descriptions))
+transactions = read_csv_transactions("data/transactions.csv")
+print(len(transactions))
 ```
 
-### card_number_generator
+### read_excel_transactions
 
 ```python
-from src.generators import card_number_generator
+from src.file_reader import read_excel_transactions
 
-for card_number in card_number_generator(1, 5):
-    print(card_number)
+transactions = read_excel_transactions("data/transactions_excel.xlsx")
+print(len(transactions))
 ```
+
+## Логирование
+
+Логи модулей `masks` и `utils` записываются в папку `logs/`.
 
 ## Тестирование
 
 ```bash
-pip install pytest pytest-cov
+pip install pytest pytest-cov requests python-dotenv pandas openpyxl
 pytest
 ```
 
