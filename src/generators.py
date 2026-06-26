@@ -4,6 +4,9 @@ from typing import Any
 
 def _get_currency_code(transaction: dict[str, Any]) -> str:
     """Возвращает код валюты из транзакции."""
+    if "currency_code" in transaction:
+        return str(transaction.get("currency_code", ""))
+
     currency = transaction.get("operationAmount", {}).get("currency", {})
     if isinstance(currency, dict):
         return str(currency.get("code", ""))

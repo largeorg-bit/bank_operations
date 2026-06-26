@@ -7,41 +7,37 @@
 - `src/masks.py` — маскирование карт и счетов
 - `src/widget.py` — подготовка данных для виджета
 - `src/processing.py` — фильтрация и сортировка операций
-- `src/generators.py` — генераторы для работы с транзакциями
-- `src/decorators.py` — декораторы
-- `src/utils.py` — чтение JSON-файла с операциями
-- `src/external_api.py` — конвертация валют
-- `src/file_reader.py` — чтение CSV и Excel
+- `src/bank_analysis.py` — поиск и подсчет категорий
+- `src/utils.py`, `src/file_reader.py`, `src/external_api.py` — работа с данными
+- `main.py` — интерфейс программы
 
-## file_reader
+## bank_analysis
 
-### read_csv_transactions
+### process_bank_search
 
 ```python
-from src.file_reader import read_csv_transactions
+from src.bank_analysis import process_bank_search
 
-transactions = read_csv_transactions("data/transactions.csv")
-print(len(transactions))
+result = process_bank_search(transactions, "Перевод")
 ```
 
-### read_excel_transactions
+### process_bank_operations
 
 ```python
-from src.file_reader import read_excel_transactions
+from src.bank_analysis import process_bank_operations
 
-transactions = read_excel_transactions("data/transactions_excel.xlsx")
-print(len(transactions))
+categories = ["Перевод организации"]
+stats = process_bank_operations(transactions, categories)
 ```
 
-## Логирование
+## Запуск программы
 
-Логи модулей `masks` и `utils` записываются в папку `logs/`.
+```bash
+python main.py
+```
 
 ## Тестирование
 
 ```bash
-pip install pytest pytest-cov requests python-dotenv pandas openpyxl
 pytest
 ```
-
-Отчет о покрытии сохраняется в папке `htmlcov/`.
