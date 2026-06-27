@@ -7,42 +7,37 @@
 - `src/masks.py` — маскирование карт и счетов
 - `src/widget.py` — подготовка данных для виджета
 - `src/processing.py` — фильтрация и сортировка операций
-- `src/generators.py` — генераторы для работы с транзакциями
+- `src/bank_analysis.py` — поиск и подсчет категорий
+- `src/utils.py`, `src/file_reader.py`, `src/external_api.py` — работа с данными
+- `main.py` — интерфейс программы
 
-## generators
+## bank_analysis
 
-### filter_by_currency
+### process_bank_search
 
 ```python
-from src.generators import filter_by_currency
+from src.bank_analysis import process_bank_search
 
-usd_transactions = filter_by_currency(transactions, "USD")
-print(next(usd_transactions))
+result = process_bank_search(transactions, "Перевод")
 ```
 
-### transaction_descriptions
+### process_bank_operations
 
 ```python
-from src.generators import transaction_descriptions
+from src.bank_analysis import process_bank_operations
 
-descriptions = transaction_descriptions(transactions)
-print(next(descriptions))
+categories = ["Перевод организации"]
+stats = process_bank_operations(transactions, categories)
 ```
 
-### card_number_generator
+## Запуск программы
 
-```python
-from src.generators import card_number_generator
-
-for card_number in card_number_generator(1, 5):
-    print(card_number)
+```bash
+python main.py
 ```
 
 ## Тестирование
 
 ```bash
-pip install pytest pytest-cov
 pytest
 ```
-
-Отчет о покрытии сохраняется в папке `htmlcov/`.
