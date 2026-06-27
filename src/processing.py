@@ -6,7 +6,11 @@ def filter_by_state(
     state: str = "EXECUTED",
 ) -> list[dict[str, Any]]:
     """Возвращает операции с заданным статусом."""
-    return [op for op in operations if op.get("state") == state]
+    target_state = state.strip().upper()
+    return [
+        operation for operation in operations
+        if str(operation.get("state", "")).strip().upper() == target_state
+    ]
 
 
 def sort_by_date(

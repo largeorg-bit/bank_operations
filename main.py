@@ -47,9 +47,9 @@ def _print_operation(operation: dict[str, Any]) -> None:
     description = operation.get("description", "")
     print(f"{date} {description}")
 
-    from_account = operation.get("from", "")
-    to_account = operation.get("to", "")
-    if from_account:
+    from_account = str(operation.get("from", "") or "")
+    to_account = str(operation.get("to", "") or "")
+    if from_account and from_account.lower() != "nan":
         print(f"{mask_account_card(from_account)} -> {mask_account_card(to_account)}")
     else:
         print(mask_account_card(to_account))
