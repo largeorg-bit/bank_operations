@@ -1,39 +1,27 @@
 # Банковские операции
 
-Проект для маскирования данных и обработки банковских операций.
+Курсовой проект для анализа банковских транзакций.
 
-## Модули
-
-- `src/masks.py` — маскирование карт и счетов
-- `src/widget.py` — подготовка данных для виджета
-- `src/processing.py` — фильтрация и сортировка операций
-- `src/bank_analysis.py` — поиск и подсчет категорий
-- `src/utils.py`, `src/file_reader.py`, `src/external_api.py` — работа с данными
-- `main.py` — интерфейс программы
-
-## bank_analysis
-
-### process_bank_search
-
-```python
-from src.bank_analysis import process_bank_search
-
-result = process_bank_search(transactions, "Перевод")
-```
-
-### process_bank_operations
-
-```python
-from src.bank_analysis import process_bank_operations
-
-categories = ["Перевод организации"]
-stats = process_bank_operations(transactions, categories)
-```
-
-## Запуск программы
+## Установка
 
 ```bash
-python main.py
+pip install -r requirements.txt
+copy .env_template .env
+```
+
+## Структура
+
+- `src/views.py` — JSON для веб-страниц
+- `src/services.py` — сервисы поиска
+- `src/reports.py` — отчеты
+- `src/utils.py` — загрузка данных
+- `data/operations.xlsx` — транзакции
+- `user_settings.json` — валюты и акции
+
+## Запуск
+
+```bash
+python -m src.main
 ```
 
 ## Тестирование
