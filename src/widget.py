@@ -1,10 +1,15 @@
-import re
-
 from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(card_or_account: str) -> str:
     """Возвращает строку с замаскированным номером карты и счета"""
+    if card_or_account is None or card_or_account == "":
+        return "Неправильно введен номер счёта"
+
+    card_or_account = str(card_or_account).strip()
+    if not card_or_account or card_or_account.lower() == "nan":
+        return "Неправильно введен номер счёта"
+
     name_of_card_or_check = ""
     digits_of_card_or_check = ""
     for i in range(len(card_or_account)):
@@ -30,7 +35,10 @@ def mask_account_card(card_or_account: str) -> str:
 
 def get_date(date_and_time: str) -> str:
     """ "возвращает строку с датой в формате "ДД.ММ.ГГГГ" ("11.03.2024")"""
+    if hasattr(date_and_time, "strftime"):
+        return date_and_time.strftime("%d.%m.%Y")
 
-    if date_and_time[:4].isdigit():
-        return f"{date_and_time[8:10]}.{date_and_time[5:7]}.{date_and_time[:4]}"
+    date_str = str(date_and_time)
+    if len(date_str) >= 10 and date_str[:4].isdigit():
+        return f"{date_str[8:10]}.{date_str[5:7]}.{date_str[:4]}"
     return "Неправильно введена дата"

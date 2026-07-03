@@ -1,18 +1,31 @@
 # Банковские операции
 
-Проект для маскирования данных и обработки банковских операций.
+Курсовой проект для анализа банковских транзакций.
 
-## Модули
+## Установка
 
-- `src/masks.py` — маскирование карт и счетов
-- `src/widget.py` — подготовка данных для виджета
-- `src/processing.py` — фильтрация и сортировка операций
+```bash
+pip install -r requirements.txt
+copy .env_template .env
+```
+
+## Структура
+
+- `src/views.py` — JSON для веб-страниц
+- `src/services.py` — сервисы поиска
+- `src/reports.py` — отчеты
+- `src/utils.py` — загрузка данных
+- `data/operations.xlsx` — транзакции
+- `user_settings.json` — валюты и акции
+
+## Запуск
+
+```bash
+python -m src.main
+```
 
 ## Тестирование
 
 ```bash
-pip install pytest pytest-cov
 pytest
 ```
-
-Отчет о покрытии сохраняется в папке `htmlcov/`.
